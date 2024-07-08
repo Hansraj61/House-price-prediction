@@ -11,8 +11,17 @@ import pickle
 st.image(r"innomatics.jpg",width=200)
 
 st.title("HOUSE PRICE PREDICTION")
-model = pickle.load(open(r"lr.pkl","rb"))
-
+model_path = os.path.join(os.path.dirname(__file__), "lr.pkl")
+try:
+    with open(model_path, "rb") as f:
+        model = pickle.load(f)
+except FileNotFoundError:
+    st.error(f"Error: Model file '{model_path}' not found.")
+    st.stop()
+except Exception as e:
+    st.error("Error loading the model:")
+    st.error(e)
+    st.stop()
 
 
 SquareFeet = st.number_input("Enter the size of house",min_value = 60, max_value = 2400,step = 50)    
