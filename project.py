@@ -12,9 +12,9 @@ import pickle
 st.image(r"innomatics.jpg",width=200)
 
 st.title("HOUSE PRICE PREDICTION")
-model_path = os.path.join(os.path.dirname(__file__), "lr.pkl")
+#model_path = os.path.join(os.path.dirname(__file__), "lr.pkl")
 try:
-    with open(model_path, "rb") as f:
+    with open("lr.pkl", "rb") as f:
         model = pickle.load(f)
 except FileNotFoundError:
     st.error(f"Error: Model file '{model_path}' not found.")
